@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEase</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            background-color: #f0f8ff; /* Light Sky Blue */
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: #87CEEB; /* Sky Blue */
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .navbar .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .navbar ul {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            transition: background 0.3s ease;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .navbar ul li a:hover {
+            background: #FFD700; /* Gold color on hover */
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 6rem 1rem;
+            background: linear-gradient(135deg, #87CEEB, #ffffff); /* Sky Blue to White Gradient */
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero .btn {
+            background: #ffffff;
+            color: #87CEEB;
+            padding: 0.9rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s ease;
+        }
+
+        .hero .btn:hover {
+            transform: scale(1.1);
+            background: #f0f0f0;
+        }
+
+        /* Sign Up Form */
+        .signup-form {
+            display: none;
+            padding: 3rem 1rem;
+            text-align: center;
+            background: #ffffff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 500px;
+            margin: 3rem auto;
+        }
+
+        .signup-form h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .signup-form input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 1.1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .signup-form input:focus {
+            border-color: #87CEEB; /* Sky Blue */
+            outline: none;
+        }
+
+        .signup-form button {
+            background: #87CEEB; /* Sky Blue */
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .signup-form button:hover {
+            background: #FFD700; /* Gold color */
+            transform: scale(1.05);
+        }
+
+        .signup-form .already-account {
+            margin-top: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .signup-form .already-account a {
+            color: #87CEEB;
+            text-decoration: none;
+        }
+
+        .signup-form .already-account a:hover {
+            text-decoration: underline;
+        }
+
+        /* Categories Section */
+        .categories-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 2rem 0;
+        }
+
+        .category-box {
+            background: #f8f8f8;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            width: 200px;
+            margin-bottom: 1rem;
+        }
+
+        .category-box:hover {
+            background: #FFD700; /* Gold hover effect */
+        }
+
+        .category-box i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #87CEEB; /* Sky Blue */
+        }
+
+        .subcategory-box {
+            display: none;
+            margin-top: 1rem;
+        }
+
+        .subcategory-box ul {
+            list-style: none;
+            padding-left: 0;
+            font-size: 1.1rem;
+        }
+
+        .subcategory-box ul li {
+            margin: 0.5rem 0;
+        }
+
+        /* Footer */
+        footer {
+            background: #87CEEB;
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 1rem;
+        }
+
+        footer .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        footer .footer-links div {
+            text-align: center;
+        }
+
+        footer .footer-links h4 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        footer .footer-links a {
+            text-decoration: none;
+            color: white;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        footer .footer-links a:hover {
+            color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">ShopEase</div>
+        <ul>
+            <li><a href="#" onclick="toggleSection('home')">Home</a></li>
+            <li><a href="#" onclick="toggleSection('categories')">Explore Products</a></li>
+            <li><a href="#" onclick="toggleSection('signup')">Sign Up</a></li>
+            <li><a href="#">Login</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Welcome to ShopEase</h1>
+        <p>Your one-stop shop for amazing deals and products!</p>
+        <button class="btn" onclick="toggleSection('categories')">Explore Now</button>
+    </section>
+
+    <!-- Sign Up Form -->
+    <section id="signup" class="signup-form">
+        <h2>Create Account</h2>
+        <input type="text" placeholder="Full Name" required><br>
+        <input type="email" placeholder="Email" required><br>
+        <input type="password" placeholder="Password" required><br>
+        <button onclick="submitSignup()">Sign Up</button>
+        <div class="already-account">Already have an account? <a href="#">Log In</a></div>
+    </section>
+
+    <!-- Categories -->
+    <section id="categories" class="categories">
+        <h2>Categories</h2>
+        <div class="categories-container">
+            <div class="category-box" onclick="toggleSubcategory('grocery')">
+                <i class="fas fa-apple-alt"></i>
+                <h3>Grocery</h3>
+            </div>
+            <div class="category-box" onclick="toggleSubcategory('electronics')">
+                <i class="fas fa-laptop"></i>
+                <h3>Electronics</h3>
+            </div>
+            <div class="category-box" onclick="toggleSubcategory('fashion')">
+                <i class="fas fa-tshirt"></i>
+                <h3>Fashion</h3>
+            </div>
+            <div class="category-box" onclick="toggleSubcategory('beauty')">
+                <i class="fas fa-spa"></i>
+                <h3>Beauty</h3>
+            </div>
+            <div class="category-box" onclick="toggleSubcategory('sports')">
+                <i class="fas fa-football-ball"></i>
+                <h3>Sports</h3>
+            </div>
+            <div class="category-box" onclick="toggleSubcategory('home')">
+                <i class="fas fa-couch"></i>
+                <h3>Home</h3>
+            </div>
+            <!-- Additional Categories -->
+            <div class="category-box" onclick="toggleSubcategory('toys')">
+                <i class="fas fa-robot"></i>
+                <h3>Toys</h3>
+            </div>
+            <div class="category-box" onclick="toggleSubcategory('automotive')">
+                <i class="fas fa-car"></i>
+                <h3>Automotive</h3>
+            </div>
+        </div>
+
+        <!-- Subcategories -->
+        <div id="grocery" class="subcategory-box">
+            <h4>Grocery Subcategories</h4>
+            <ul>
+                <li>Vegetables</li>
+                <li>Fruits</li>
+                <li>Beverages</li>
+            </ul>
+        </div>
+        <div id="electronics" class="subcategory-box">
+            <h4>Electronics Subcategories</h4>
+            <ul>
+                <li>Mobile Phones</li>
+                <li>Laptops</li>
+                <li>Cameras</li>
+            </ul>
+        </div>
+        <div id="fashion" class="subcategory-box">
+            <h4>Fashion Subcategories</h4>
+            <ul>
+                <li>Men's Wear</li>
+                <li>Women's Wear</li>
+                <li>Footwear</li>
+            </ul>
+        </div>
+        <div id="beauty" class="subcategory-box">
+            <h4>Beauty Subcategories</h4>
+            <ul>
+                <li>Makeup</li>
+                <li>Skincare</li>
+                <li>Hair Care</li>
+            </ul>
+        </div>
+        <div id="sports" class="subcategory-box">
+            <h4>Sports Subcategories</h4>
+            <ul>
+                <li>Football</li>
+                <li>Basketball</li>
+                <li>Fitness Equipment</li>
+            </ul>
+        </div>
+        <div id="home" class="subcategory-box">
+            <h4>Home Subcategories</h4>
+            <ul>
+                <li>Furniture</li>
+                <li>Appliances</li>
+                <li>Decor</li>
+            </ul>
+        </div>
+        <div id="toys" class="subcategory-box">
+            <h4>Toys Subcategories</h4>
+            <ul>
+                <li>Action Figures</li>
+                <li>Board Games</li>
+                <li>Learning Toys</li>
+            </ul>
+        </div>
+        <div id="automotive" class="subcategory-box">
+            <h4>Automotive Subcategories</h4>
+            <ul>
+                <li>Car Accessories</li>
+                <li>Motorcycles</li>
+                <li>Spare Parts</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <div>
+                <h4>ABOUT</h4>
+                <a href="#">About Us</a>
+                <a href="#">Group Companies</a>
+            </div>
+            <div>
+                <h4>HELP</h4>
+                <a href="#">Help Center</a>
+                <a href="#">FAQ</a>
+                <a href="#">Grievance Redressal</a>
+            </div>
+            <div>
+                <h4>CONSUMER POLICY</h4>
+                <a href="#">Privacy</a>
+                <a href="#">Terms Of Use</a>
+                <a href="#">Security</a>
+            </div>
+            <div>
+                <h4>CONTACT US</h4>
+                <a href="mailto:xyz">Mail Us: xyz</a>
+                <p>Telephone: 044-45614700/044-67415800</p>
+            </div>
+        </div>
+        <div class="footer-links">
+            <p>© 2007-2024 ShopEase</p>
+            <p>CIN: US1109KA2012PTC068107</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleSection(sectionId) {
+            const sections = ['home', 'categories', 'signup'];
+            sections.forEach(section => {
+                const sectionElement = document.getElementById(section);
+                sectionElement.style.display = section === sectionId ? (sectionElement.style.display === 'none' ? 'block' : 'none') : 'none';
+            });
+        }
+
+        function toggleSubcategory(category) {
+            const subcategories = document.querySelectorAll('.subcategory-box');
+            subcategories.forEach(subcategory => {
+                subcategory.style.display = 'none';
+            });
+            const selectedSubcategory = document.getElementById(category);
+            if (selectedSubcategory) {
+                selectedSubcategory.style.display = selectedSubcategory.style.display === 'none' ? 'block' : 'none';
+            }
+        }
+
+        function submitSignup() {
+            alert("Sign Up Successful!");
+            toggleSection('home');
+        }
+    </script>
+</body>
+</html>
